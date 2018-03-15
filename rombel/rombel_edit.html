@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MGMP</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            MANAJEMEN DATA ROMBEL
+        </div>
+        <div class="wrapper">
+            <div class="sidebar">
+                <ul>
+                    <li>
+                        <a href="../siswa/siswa_tampil.html">Siswa</a>
+                    </li>
+                    <li>
+                        <a href="../kelas/kelas_tampil.html">Kelas</a>
+                    </li>
+                    <li>
+                        <a href="../rombel/rombel_tampil.html">Rombel</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="space">
+                    <div class="form-wrapper">
+                        <div class="form-group">
+                            <p class="form-title">Input Rombongan Belajar</p>
+                            <form class="" id="formUpdateRombel"  method="POST">
+                              <input type="hidden" name="id">
+                              <input type="hidden" name="_method" value="PUT">
+                              <div class="form-inline">
+                                <label>Tahun Ajar :</label>
+                                <input type="number" name="tahun_ajar">
+                              </div>
+                              <div class="form-inline">
+                                <label>Semester :</label>
+                                <select  name="semester">
+                                  <option value="1">Ganjil</option>
+                                  <option value="2">Genap</option>
+                                </select>
+                              </div>
+                              <div class="form-inline">
+                                <label>Kelas :</label>
+                                <select name="kelas">
+                                </select>
+                              </div>
+                              <div class="form-inline">
+                                <label>Tempat Lahir :</label>
+                                <input type="text" name="tempat_lahir">
+                              </div>
+                              <div class="form-inline">
+                                <label>Tanggal Lahir :</label>
+                                <input type="date" name="tanggal_lahir">
+                              </div>
+                              <div class="form-inline">
+                                <label>NIS Siswa :</label>
+                                <select name="nis">
+                                </select>
+                              </div>
+                              <button onclick="updateRombel()">Simpan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>MGMP @ 2018</p>
+        </div>
+    </div>
+    <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+      function getParameter(sParam) {
+          var sPageURL = window.location.search.substring(1);
+          var sURLVariables = sPageURL.split('&');
+          for (var i = 0; i < sURLVariables.length; i++) {
+              var sParameterName = sURLVariables[i].split('=');
+              if (sParameterName[0] == sParam) {
+                  return sParameterName[1];
+              }
+          }
+        }  //proses nangkap id
+      var id=getParameter('id') //get id form url
+
+      $(document).ready(function() {
+
+        // Panggil Select Kelas
+        $.ajax({
+          url: 'http://127.0.0.1:8000/api/kelas',
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            console.log(data);
+            $.each(data, function(index, el) {
+              $('select[name="kelas"]').append('<option value="'+el.id+'">'+el.nama+'</option>')
+            });
+          }
+        })
+
+        // NIS
+        $.ajax({
+          url: 'http://127.0.0.1:8000/api/siswa',
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            console.log(data);
+            $.each(data, function(index, el) {
+              $('select[name="nis"]').append('<option value="'+el.id+'">'+el.nis+'</option>')
+            });
+          }
+        })
+
+        // tampilkan ddata di form
+        $.ajax({
+          url: 'http://127.0.0.1:8000/api/rombel/'+id,
+          crossDomain : true,
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            $('input[name="id"]').val(data.id)
+            $('input[name="tahun_ajar"]').val(data.tahun_ajar)
+            $('select[name="semester"]').val(data.semester)
+            $('select[name="kelas"]').val(data.kelas.id)
+            $('input[name="tempat_lahir"]').val(data.siswa.tempat_lahir)
+            $('input[name="tanggal_lahir"]').val(data.siswa.tanggal_lahir)
+            $('select[name="nis"]').val(data.siswa.id)
+          }
+        })
+      }); //batas document ready
+
+      function updateRombel() {
+        var dataRombel = $('#formUpdateRombel').serialize()
+        var id =   $('input[name="id"]').val()
+
+        $.ajax({
+          url: 'http://127.0.0.1:8000/api/rombel-update/'+id,
+          type: 'post',
+          dataType: 'json',
+          data: dataRombel,
+          success: function (data) {
+            console.log(data);
+            if (data.sukses == true) {
+              alert('Data Berhasil Diperbarui')
+            }
+            else {
+              alert('Data Gagal Diperbarui')
+            }
+          }
+        })
+      }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MGMP</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            MANAJEMEN DATA KELAS
+        </div>
+        <div class="wrapper">
+            <div class="sidebar">
+                <ul>
+                    <li>
+                        <a href="../siswa/siswa_tampil.html">Siswa</a>
+                    </li>
+                    <li>
+                        <a href="../kelas/kelas_tampil.html">Kelas</a>
+                    </li>
+                    <li>
+                        <a href="../rombel/rombel_tampil.html">Rombel</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="space">
+                    <div class="form-wrapper">
+                        <div class="form-group">
+                            <p class="form-title">Input Kelas</p>
+                            <div class="form-inline">
+                                <label>Nama :</label>
+                                <input type="text" name="nama">
+                            </div>
+                            <button class="submit">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>MGMP @ 2018</p>
+        </div>
+    </div>
+    <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      function getParameter(sParam) {
+          var sPageURL = window.location.search.substring(1);
+          var sURLVariables = sPageURL.split('&');
+          for (var i = 0; i < sURLVariables.length; i++) {
+              var sParameterName = sURLVariables[i].split('=');
+              if (sParameterName[0] == sParam) {
+                  return sParameterName[1];
+              }
+          }
+        }  //proses nangkap id
+      var id=getParameter('id') //get id form url
+
+      $(document).ready(function() {
+        // tampilkan data di form
+        $.ajax({
+          url: 'http://127.0.0.1:8000/api/kelas/'+id,
+          crossDomain : true,
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            $('input[name="id"]').val(data.id)
+            $('input[name="nama"]').val(data.nama)
+          }
+        })
+      }); //batas document ready
+
+
+
+    </script>
+</body>
+
+</html>

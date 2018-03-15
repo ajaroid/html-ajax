@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MGMP</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            MANAJEMEN DATA KELAS
+        </div>
+        <div class="wrapper">
+            <div class="sidebar">
+                <ul>
+                    <li>
+                        <a href="../siswa/siswa_tampil.html">Siswa</a>
+                    </li>
+                    <li>
+                        <a href="../kelas/kelas_tampil.html">Kelas</a>
+                    </li>
+                    <li>
+                        <a href="../rombel/rombel_tampil.html">Rombel</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="space">
+                    <div class="view-wrapper">
+                        <div class="view-inline">
+                            <p class="title-inline">Data Kelas</p>
+                            <a href="../kelas/kelas_input.html"> <button class="submit-inline">Tambah</button> </a>
+                        </div>
+                        <table>
+                            <thead>
+                              <tr>
+                                <th>ID</th>
+                                <th>Kelas</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody id="kelasTampil">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>MGMP @ 2018</p>
+        </div>
+    </div>
+    <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $.ajax({
+          url: 'http://127.0.0.1:8000/api/kelas',
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            console.log(data);
+            $.each(data,function(index, el) {
+              $('#kelasTampil').append('<tr><td>'+el.id+'</td><td>'+el.nama+'</td><td><span><a href="../kelas/kelas_edit.html?id='+el.id+'">Edit</a></span> <span><a href="../kelas/kelas_detail.html?id='+el.id+'">Hapus</a></span></td> </tr>')
+            });
+          }
+        })
+      });
+    </script>
+</body>
+
+</html>

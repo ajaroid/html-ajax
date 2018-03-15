@@ -1,0 +1,115 @@
+body {
+    margin: auto;
+}
+
+/* main */
+.container {
+    max-width: 1024px;
+    height: 100%;
+    margin: auto;
+    border: 1px solid #999999;
+    min-height: 400px;
+}
+.header {
+    line-height: 50px;
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+.wrapper {
+    width: 100%;
+    background-color: #fff;
+    min-height: 400px;
+}
+.sidebar {
+    width: 30%;
+    min-height: 400px;
+    float: left;
+    background-color: #ecf0f1;
+    display: block;
+}
+.sidebar ul li {
+    line-height: 30px;
+}
+.content {
+    width: 70%;
+    height: 100%;
+    display: block;
+    float: left;
+}
+.content .space {
+    padding: 20px;
+}
+.footer {
+    line-height: 30px;
+    background-color: #000000;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    float: left;
+    font-size: 12px;
+}
+
+/* form */
+
+.form-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.form-group {
+
+}
+.submit {
+    display: block;
+    margin-top: 20px;
+}
+.form-inline {
+    margin-bottom: 15px;
+}
+.form-title {
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+/* view */
+
+.view-wrapper {
+   width: 650px;
+}
+.view-inline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-wrapper table {
+    min-width: 650px;
+}
+.view-wrapper table, .view-wrapper th, .view-wrapper td {
+    border: 1px solid #999999;
+    border-collapse: collapse;
+
+}
+.view-wrapper th, .view-wrapper td {
+    padding: 10px 20px;
+}
+
+/* detail */
+
+.detail-wrapper {
+    padding: 20px;
+}
+
+.detail-wrapper table {
+     min-width: 300px;
+}
+
+.detail-wrapper table, .detail-wrapper th, .detail-wrapper td {
+    padding: 10px 20px 10px 0;
+}
+.detail-wrapper .title {
+    font-weight: bold;
+}

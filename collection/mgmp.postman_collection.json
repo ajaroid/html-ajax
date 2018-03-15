@@ -1,0 +1,568 @@
+{
+	"id": "885472b6-6f72-4662-8fd1-9f24b4867cc6",
+	"name": "mgmp",
+	"description": null,
+	"auth": null,
+	"events": null,
+	"variables": null,
+	"order": [],
+	"folders_order": [
+		"110328cb-63cb-4adb-b4e5-e4beaef15e2b",
+		"6b13f573-2059-4743-b5c8-2e9803cae3ba",
+		"618770bc-4d9f-4dfe-a490-edc638987df9"
+	],
+	"folders": [
+		{
+			"id": "110328cb-63cb-4adb-b4e5-e4beaef15e2b",
+			"name": "kelas",
+			"description": null,
+			"auth": null,
+			"events": null,
+			"collection": "885472b6-6f72-4662-8fd1-9f24b4867cc6",
+			"folder": null,
+			"order": [
+				"19a1b3c0-cb46-4bb8-ac2e-cf8c7563ab46",
+				"569bc9a9-fe9b-45b1-b7fe-5beec0529c32",
+				"b3a6bdb5-6005-4c79-9479-06d36ec4cefc",
+				"1018101a-e6ac-441f-8467-120171f98aa5"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "618770bc-4d9f-4dfe-a490-edc638987df9",
+			"name": "rombel",
+			"description": null,
+			"auth": null,
+			"events": null,
+			"collection": "885472b6-6f72-4662-8fd1-9f24b4867cc6",
+			"folder": null,
+			"order": [
+				"ced9f584-ffbb-49ca-9b18-1b925608e23b",
+				"0f4352cf-9615-490a-ad5a-7789ce99e71d",
+				"48b46602-3e8e-453f-820b-916943fb556a",
+				"e996d669-72f1-4c03-8c01-a33169a6835d"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "6b13f573-2059-4743-b5c8-2e9803cae3ba",
+			"name": "siswa",
+			"description": null,
+			"auth": null,
+			"events": null,
+			"collection": "885472b6-6f72-4662-8fd1-9f24b4867cc6",
+			"folder": null,
+			"order": [
+				"9e6140f9-92aa-4760-b837-75d3b261d316",
+				"b9e92ad9-1f02-4ec2-9ba5-39a4e787b54a",
+				"27fb0885-2b45-418a-bc1a-1d21fbe587ad",
+				"14136a38-6ad4-496a-8d19-df588ebe6687"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "0f4352cf-9615-490a-ad5a-7789ce99e71d",
+			"name": "get/{id}",
+			"url": "http://127.0.0.1:8000/api/rombel/1",
+			"description": "",
+			"data": [
+				{
+					"key": "tahun_ajar",
+					"value": "2018",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "semester",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "kelas_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "siswa_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "618770bc-4d9f-4dfe-a490-edc638987df9",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "1018101a-e6ac-441f-8467-120171f98aa5",
+			"name": "delete",
+			"url": "http://127.0.0.1:8000/api/kelas/1",
+			"description": "",
+			"data": [
+				{
+					"key": "nama",
+					"value": "kelas 1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "110328cb-63cb-4adb-b4e5-e4beaef15e2b",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "14136a38-6ad4-496a-8d19-df588ebe6687",
+			"name": "delete",
+			"url": "http://127.0.0.1:8000/api/siswa/1",
+			"description": "",
+			"data": [
+				{
+					"key": "nama",
+					"value": "syahroni",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "jenis_kelamin",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tempat_lahir",
+					"value": "Bekasi",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tanggal_lahir",
+					"value": "2017-01-11",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "alamat",
+					"value": "Boyolali",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "kelas_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nis",
+					"value": "1234",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6b13f573-2059-4743-b5c8-2e9803cae3ba",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "19a1b3c0-cb46-4bb8-ac2e-cf8c7563ab46",
+			"name": "store",
+			"url": "http://127.0.0.1:8000/api/kelas",
+			"description": "",
+			"data": [
+				{
+					"key": "nama",
+					"value": "kelas 1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "110328cb-63cb-4adb-b4e5-e4beaef15e2b",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "27fb0885-2b45-418a-bc1a-1d21fbe587ad",
+			"name": "update",
+			"url": "http://127.0.0.1:8000/api/siswa/1",
+			"description": "",
+			"data": [
+				{
+					"key": "nama",
+					"value": "syahroni",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "jenis_kelamin",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tempat_lahir",
+					"value": "Bekasi",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tanggal_lahir",
+					"value": "2017-01-11",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "alamat",
+					"value": "Boyolali",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "kelas_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nis",
+					"value": "1234",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6b13f573-2059-4743-b5c8-2e9803cae3ba",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "48b46602-3e8e-453f-820b-916943fb556a",
+			"name": "update",
+			"url": "http://127.0.0.1:8000/api/rombel/1",
+			"description": "",
+			"data": [
+				{
+					"key": "tahun_ajar",
+					"value": "2018",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "semester",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "kelas_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "siswa_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "618770bc-4d9f-4dfe-a490-edc638987df9",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "569bc9a9-fe9b-45b1-b7fe-5beec0529c32",
+			"name": "get/{id}",
+			"url": "http://127.0.0.1:8000/api/kelas/1",
+			"description": "",
+			"data": [
+				{
+					"key": "nama",
+					"value": "kelas 1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "110328cb-63cb-4adb-b4e5-e4beaef15e2b",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "9e6140f9-92aa-4760-b837-75d3b261d316",
+			"name": "store",
+			"url": "http://127.0.0.1:8000/api/siswa",
+			"description": "",
+			"data": [
+				{
+					"key": "nama",
+					"value": "syahroni",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "jenis_kelamin",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tempat_lahir",
+					"value": "Bekasi",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tanggal_lahir",
+					"value": "2017-01-11",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "alamat",
+					"value": "Boyolali",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "kelas_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nis",
+					"value": "1234",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6b13f573-2059-4743-b5c8-2e9803cae3ba",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "b3a6bdb5-6005-4c79-9479-06d36ec4cefc",
+			"name": "update",
+			"url": "http://127.0.0.1:8000/api/kelas/1",
+			"description": "",
+			"data": [
+				{
+					"key": "nama",
+					"value": "kelas 1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "110328cb-63cb-4adb-b4e5-e4beaef15e2b",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "b9e92ad9-1f02-4ec2-9ba5-39a4e787b54a",
+			"name": "get/{id}",
+			"url": "http://127.0.0.1:8000/api/siswa/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "6b13f573-2059-4743-b5c8-2e9803cae3ba",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "ced9f584-ffbb-49ca-9b18-1b925608e23b",
+			"name": "store",
+			"url": "http://127.0.0.1:8000/api/rombel",
+			"description": "",
+			"data": [
+				{
+					"key": "tahun_ajar",
+					"value": "2018",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "semester",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "kelas_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "siswa_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "618770bc-4d9f-4dfe-a490-edc638987df9",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "e996d669-72f1-4c03-8c01-a33169a6835d",
+			"name": "delete",
+			"url": "http://127.0.0.1:8000/api/rombel/1",
+			"description": "",
+			"data": [
+				{
+					"key": "tahun_ajar",
+					"value": "2018",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "semester",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "kelas_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "siswa_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "618770bc-4d9f-4dfe-a490-edc638987df9",
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}
