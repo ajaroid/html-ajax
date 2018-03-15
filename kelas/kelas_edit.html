@@ -30,12 +30,14 @@
                 <div class="space">
                     <div class="form-wrapper">
                         <div class="form-group">
+                          <form id="form-edit-kelas">
                             <p class="form-title">Input Kelas</p>
                             <div class="form-inline">
                                 <label>Nama :</label>
                                 <input type="text" name="nama">
                             </div>
                             <button class="submit">Simpan</button>
+                          </form>
                         </div>
                     </div>
                 </div>
@@ -72,6 +74,32 @@
           }
         })
       }); //batas document ready
+
+      $('#form-edit-kelas').on('submit', function (e) {
+
+        e.preventDefault() // fungsinya supaya tidak ke redirect / reload pas submit form
+
+        var data = $(this).serialize()
+
+        // var data = {
+        //   nama: $('input[name="nama"]').val()
+        // }
+
+        $.ajax({
+          url: 'http://127.0.0.1:8000/api/kelas/' + id,
+          method: 'PUT',
+          data: data,
+          success: function (response) {
+            debugger
+          },
+          error: function (e) {
+            debugger
+          }
+        })
+
+      })
+
+
 
 
 
