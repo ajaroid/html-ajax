@@ -78,13 +78,7 @@
       $('#form-edit-kelas').on('submit', function (e) {
 
         e.preventDefault() // fungsinya supaya tidak ke redirect / reload pas submit form
-
         var data = $(this).serialize()
-
-        // var data = {
-        //   nama: $('input[name="nama"]').val()
-        // }
-
         $.ajax({
           url: 'http://127.0.0.1:8000/api/kelas/' + id,
           method: 'PUT',
@@ -98,10 +92,6 @@
         })
 
       })
-
-
-
-
 
     </script>
 </body>

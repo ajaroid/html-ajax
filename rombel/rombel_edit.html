@@ -31,9 +31,8 @@
                     <div class="form-wrapper">
                         <div class="form-group">
                             <p class="form-title">Input Rombongan Belajar</p>
-                            <form class="" id="formUpdateRombel"  method="POST">
-                              <input type="hidden" name="id">
-                              <input type="hidden" name="_method" value="PUT">
+                            <form id="form-edit-rombel">
+                              <!-- <input type="hidden" name="id"> -->
                               <div class="form-inline">
                                 <label>Tahun Ajar :</label>
                                 <input type="number" name="tahun_ajar">
@@ -51,19 +50,11 @@
                                 </select>
                               </div>
                               <div class="form-inline">
-                                <label>Tempat Lahir :</label>
-                                <input type="text" name="tempat_lahir">
-                              </div>
-                              <div class="form-inline">
-                                <label>Tanggal Lahir :</label>
-                                <input type="date" name="tanggal_lahir">
-                              </div>
-                              <div class="form-inline">
                                 <label>NIS Siswa :</label>
                                 <select name="nis">
                                 </select>
                               </div>
-                              <button onclick="updateRombel()">Simpan</button>
+                              <button class="submit">Simpan</button>
                             </form>
                         </div>
                     </div>
@@ -135,26 +126,24 @@
         })
       }); //batas document ready
 
-      function updateRombel() {
-        var dataRombel = $('#formUpdateRombel').serialize()
-        var id =   $('input[name="id"]').val()
 
+      $('#form-edit-rombel').on('submit', function (e) {
+
+        e.preventDefault() // fungsinya supaya tidak ke redirect / reload pas submit form
+        var data = $(this).serialize()
         $.ajax({
-          url: 'http://127.0.0.1:8000/api/rombel-update/'+id,
-          type: 'post',
-          dataType: 'json',
-          data: dataRombel,
-          success: function (data) {
-            console.log(data);
-            if (data.sukses == true) {
-              alert('Data Berhasil Diperbarui')
-            }
-            else {
-              alert('Data Gagal Diperbarui')
-            }
+          url: 'http://127.0.0.1:8000/api/rombel/' + id,
+          method: 'PUT',
+          data: data,
+          success: function (response) {
+            debugger
+          },
+          error: function (e) {
+            debugger
           }
         })
-      }
+
+      })
 
     </script>
 </body>
