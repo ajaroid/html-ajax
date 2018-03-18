@@ -66,7 +66,10 @@
               return '<tr>' +
               '<td>' + item.id + '</td>' +
               '<td>' + item.nama + '</td>' +
-              '<td><span><a href="../kelas/kelas_edit.html?id=' + item.id + '">Edit</a></span> <span><a href="../kelas/kelas_detail.html?id=' + item.id + '">Hapus</a></span></td>' +
+              '<td>' +
+              '<span><a href="../kelas/kelas_edit.html?id=' + item.id + '"> Edit </a></span>' +
+              /* '<span><a href="../kelas/kelas_detail.html?id=' + item.id + '"> Hapus </a></span>' + */
+              '</td>' +
               '</tr>'
             })
             $('#kelasTampil').html(rows)

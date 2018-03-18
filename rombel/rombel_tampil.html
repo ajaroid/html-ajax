@@ -2,82 +2,91 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>MGMP</title>
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
+  <meta charset="utf-8">
+  <title>MGMP</title>
+  <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            MANAJEMEN DATA ROMBEL
-        </div>
-        <div class="wrapper">
-            <div class="sidebar">
-                <ul>
-                    <li>
-                        <a href="../siswa/siswa_tampil.html">Siswa</a>
-                    </li>
-                    <li>
-                        <a href="../kelas/kelas_tampil.html">Kelas</a>
-                    </li>
-                    <li>
-                        <a href="../rombel/rombel_tampil.html">Rombel</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="content">
-                <div class="space">
-                    <div class="view-wrapper">
-                        <div class="view-inline">
-                            <p class="title-inline">Data Rombongan Belajar</p>
-                          <a href="../rombel/rombel_input.html"><button class="submit-inline">Tambah</button></a>
-                        </div>
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>ID</th>
-                              <th>Tahun Ajar</th>
-                              <th>Semester</th>
-                              <th>Kelas</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody id="rombelTampil">
-
-                          </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <p>MGMP @ 2018</p>
-        </div>
+  <div class="container">
+    <div class="header">
+      MANAJEMEN DATA ROMBEL
     </div>
+    <div class="wrapper">
+      <div class="sidebar">
+        <ul>
+          <li>
+            <a href="../siswa/siswa_tampil.html">Siswa</a>
+          </li>
+          <li>
+            <a href="../kelas/kelas_tampil.html">Kelas</a>
+          </li>
+          <li>
+            <a href="../rombel/rombel_tampil.html">Rombel</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="space">
+          <div class="view-wrapper">
+            <div class="view-inline">
+              <p class="title-inline">Data Rombongan Belajar</p>
+              <a href="../rombel/rombel_input.html">
+                <button class="submit-inline">Tambah</button>
+              </a>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tahun Ajar</th>
+                  <th>Semester</th>
+                  <th>Kelas</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="rombelTampil">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>MGMP @ 2018</p>
+    </div>
+  </div>
 
 
-    <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
 
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $.ajax({
-          url: 'http://127.0.0.1:8000/api/rombel/',
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            console.log(data);
-            $.each(data,function(index, el) {
-              $('#rombelTampil').append('<tr><td>'+el.id+'</td><td>'+el.tahun_ajar+'</td><td>'+el.semester+'</td><td>'+el.kelas.nama+'</td><td><span><a href="../rombel/rombel_edit.html?id='+el.id+'">Edit</a></span>   <span><a href="../rombel/rombel_edit.html?id='+el.id+'">Hapus</a></span> <span><a href="../rombel/rombel_detail.html?id='+el.id+'">Detail</a></span></td></tr>')
-            });
-          }
-        })
-      });
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $.ajax({
+        url: 'http://localhost:8000/api/rombel',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          const rows = data.map(function (item) {
+            return '<tr>' +
+            '<td>' + item.tahun_ajar + '</td>' +
+            '<td>' + (item.semester % 2 === 0 ? 'Genap' : 'Ganjil') + '</td>' +
+            '<td>' + item.kelas_nama + '</td>' +
+            '<td>' +
 
-      function test() {
-        alert( $('a').attr('data-id') )
-      }
-    </script>
+            '<span><a href="../rombel/rombel_edit.html?tahun_ajar=' + item.tahun_ajar + '&kelas_id=' + item.kelas_id + '&semester=' + item.semester +'"> Edit </a></span>' +
+            /* '<span><a href="../rombel/rombel_edit.html?id=' + item.id + '"> Hapus </a></span>' + */
+            '<span><a href="../rombel/rombel_detail.html?tahun_ajar=' + item.tahun_ajar + '&kelas_id=' + item.kelas_id + '&semester=' + item.semester +'"> Detail </a></span>' +
+
+            '</td>' +
+            '</tr>'
+          })
+
+          $('#rombelTampil').html(rows)
+        }
+      })
+    })
+  </script>
 </body>
 
 </html>

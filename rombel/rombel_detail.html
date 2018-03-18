@@ -2,97 +2,116 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>MGMP</title>
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
+  <meta charset="utf-8">
+  <title>MGMP</title>
+  <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            MANAJEMEN DATA ROMBEL
-        </div>
-        <div class="wrapper">
-            <div class="sidebar">
-                <ul>
-                    <li>
-                        <a href="../siswa/siswa_tampil.html">Siswa</a>
-                    </li>
-                    <li>
-                        <a href="../kelas/kelas_tampil.html">Kelas</a>
-                    </li>
-                    <li>
-                        <a href="../rombel/rombel_tampil.html">Rombel</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="content">
-                <div class="space">
-                    <div class="detail-wrapper">
-                        <p>Detail Rombongan Belajar</p>
-                        <table>
-                            <tr>
-                                <td class="title">ID</td>
-                                <td id="id"></td>
-                            </tr>
-                            <tr>
-                                <td class="title">Tahun Ajar</td>
-                                <td id='tahun_ajar'></td>
-                            </tr>
-                            <tr>
-                                <td class="title">Semester</td>
-                                <td id="semester"></td>
-                            </tr>
-                            <tr>
-                                <td class="title">Kelas</td>
-                                <td id="kelas"></td>
-                            </tr>
-                            <tr>
-                                <td class="title">Siswa</td>
-                                <td id="siswa"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <p>MGMP @ 2018</p>
-        </div>
+  <div class="container">
+    <div class="header">
+      MANAJEMEN DATA ROMBEL
     </div>
+    <div class="wrapper">
+      <div class="sidebar">
+        <ul>
+          <li>
+            <a href="../siswa/siswa_tampil.html">Siswa</a>
+          </li>
+          <li>
+            <a href="../kelas/kelas_tampil.html">Kelas</a>
+          </li>
+          <li>
+            <a href="../rombel/rombel_tampil.html">Rombel</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="space">
+          <div class="detail-wrapper">
+            <p>Detail Rombongan Belajar</p>
+            <table>
+              <tr>
+                <td class="title">Tahun Ajar</td>
+                <td id='tahun_ajar'></td>
+              </tr>
+              <tr>
+                <td class="title">Semester</td>
+                <td id="semester"></td>
+              </tr>
+              <tr>
+                <td class="title">Kelas</td>
+                <td id="kelas"></td>
+              </tr>
+            </table>
+          </div>
+          <div class="view-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>NIS</th>
+                  <th>Nama</th>
+                  <th>L/P</th>
+                </tr>
+              </thead>
+              <tbody id="siswaMembers">
 
-    <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>MGMP @ 2018</p>
+    </div>
+  </div>
 
-    <script type="text/javascript">
-      function getParameter(sParam) {
-          var sPageURL = window.location.search.substring(1);
-          var sURLVariables = sPageURL.split('&');
-          for (var i = 0; i < sURLVariables.length; i++) {
-              var sParameterName = sURLVariables[i].split('=');
-              if (sParameterName[0] == sParam) {
-                  return sParameterName[1];
-              }
-          }
-        }  //proses nangkap id
-      var id=getParameter('id') //get id form url
+  <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
 
-      $(document).ready(function() {
-        $.ajax({
-          url: 'http://127.0.0.1:8000/api/rombel/'+id,
-          crossDomain : true,
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            $('#id').html(data.id)
-            $('#tahun_ajar').html(data.tahun_ajar)
-            $('#semester').html(data.semester)
-            $('#kelas').html(data.kelas.nama)
-            $('#siswa').html(data.siswa.nama)
-
-          }
+  <script type="text/javascript">
+    function parseQueryString (queryString) {
+      const result = queryString
+        .split('&')
+        .map(function (item) {
+          return item.split('=')
         })
-      });
-    </script>
+        .reduce(function (result, item) {
+          return Object.assign({}, result, {
+            [item[0]]: item[1]
+          })
+        }, {})
+
+      return result
+    }
+
+    const queryString = parseQueryString(window.location.search.slice(1))
+    const tahunAjar = queryString.tahun_ajar
+    const kelasId = queryString.kelas_id
+    const semester = queryString.semester
+
+    $(document).ready(function () {
+      $.ajax({
+        url: 'http://127.0.0.1:8000/api/rombel/' + tahunAjar + '/' + kelasId + '/' + semester,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('#tahun_ajar').html(data.tahun_ajar)
+          $('#semester').html(data.semester % 2 === 0 ? 'Genap' : 'Ganjil')
+          $('#kelas').html(data.kelas.nama)
+
+          const siswaMembers = data.siswa_members.map(function (item) {
+            return '<tr>' +
+            '<td>' + item.nis + '</td>' +
+            '<td>' + item.nama + '</td>' +
+            '<td>' + (item.jenis_kelamin === 1 ? 'L' : 'P') + '</td>' +
+            '</tr>'
+          })
+          $('#siswaMembers').html(siswaMembers)
+        }
+      })
+    });
+  </script>
 </body>
 
 </html>

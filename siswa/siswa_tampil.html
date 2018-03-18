@@ -72,7 +72,11 @@
             '<td>' + item.nis + '</td>' +
             '<td>' + item.nama + '</td>' +
             '<td>' + (item.jenis_kelamin === 1 ? 'L' : 'P') + '</td>' +
-            '<td><span><a href="../siswa/siswa_edit.html?id=' + item.id + '">Edit</a></span> <span><a href="../siswa/siswa_detail.html?id=' + item.id + '">Hapus</a></span>  <span><a href="../siswa/siswa_detail.html?id=' + item.id + '">Detail</a></span></td>' +
+            '<td>' +
+            '<span><a href="../siswa/siswa_edit.html?id=' + item.id + '"> Edit </a></span>' +
+            /* '<span><a href="../siswa/siswa_detail.html?id=' + item.id + '"> Hapus </a></span>' + */
+            '<span><a href="../siswa/siswa_detail.html?id=' + item.id + '"> Detail </a></span>' +
+            '</td>' +
             '</tr>'
           })
 
