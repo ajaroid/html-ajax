@@ -2,109 +2,146 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>MGMP</title>
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
+  <meta charset="utf-8">
+  <title>MGMP</title>
+  <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            MANAJEMEN DATA SISWA
-        </div>
-        <div class="wrapper">
-            <div class="sidebar">
-                <ul>
-                    <li>
-                        <a href="../siswa/siswa_tampil.html">Siswa</a>
-                    </li>
-                    <li>
-                        <a href="../kelas/kelas_tampil.html">Kelas</a>
-                    </li>
-                    <li>
-                        <a href="../rombel/rombel_tampil.html">Rombel</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="content">
-                <div class="space">
-                    <div class="form-wrapper">
-                        <div class="form-group">
-                            <p class="form-title">Input Siswa</p>
-                            <div class="form-inline">
-                                <label>NIS :</label>
-                                <input type="text" name="nis">
-                            </div>
-                            <div class="form-inline">
-                                <label>Nama :</label>
-                                <input type="text" name="nama">
-                            </div>
-                            <div class="form-inline">
-                                <label>Jenis Kelamin :</label>
-                                <select name="jenis_kelamin">
-                                    <option value="1">Laki-laki</option>
-                                    <option value="2">Perempuan</option>
-                                </select>
-                            </div>
-                            <div class="form-inline">
-                                <label>Tempat Lahir :</label>
-                                <input type="text" name="tempat_lahir">
-                            </div>
-                            <div class="form-inline">
-                                <label>Tanggal Lahir :</label>
-                                <input type="date" name="tanggal_lahir">
-                            </div>
-                            <div class="form-inline">
-                                <label>Alamat :</label>
-                                <input type="text" name="alamat">
-                            </div>
-                            <button class="submit">Simpan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <p>MGMP @ 2018</p>
-        </div>
+  <div class="container">
+    <div class="header">
+      MANAJEMEN DATA SISWA
     </div>
+    <div class="wrapper">
+      <div class="sidebar">
+        <ul>
+          <li>
+            <a href="../siswa/siswa_tampil.html">Siswa</a>
+          </li>
+          <li>
+            <a href="../kelas/kelas_tampil.html">Kelas</a>
+          </li>
+          <li>
+            <a href="../rombel/rombel_tampil.html">Rombel</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="space">
+          <div class="form-wrapper">
+            <div class="form-group">
+              <form id="form-siswa">
+                <p class="form-title">Input Siswa</p>
+                <div class="form-inline">
+                  <label>NIS :</label>
+                  <input type="text" name="nis">
+                </div>
+                <div class="form-inline">
+                  <label>Nama :</label>
+                  <input type="text" name="nama">
+                </div>
+                <div class="form-inline">
+                  <label>Jenis Kelamin :</label>
+                  <select name="jenis_kelamin">
+                    <option value="1">Laki-laki</option>
+                    <option value="0">Perempuan</option>
+                  </select>
+                </div>
+                <div class="form-inline">
+                  <label>Tempat Lahir :</label>
+                  <input type="text" name="lahir_tempat">
+                </div>
+                <div class="form-inline">
+                  <label>Tanggal Lahir :</label>
+                  <input type="date" name="lahir_tanggal">
+                </div>
+                <div class="form-inline">
+                  <label>Alamat :</label>
+                  <input type="text" name="alamat">
+                </div>
+                <button class="submit">Simpan</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>MGMP @ 2018</p>
+    </div>
+  </div>
 
-    <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
-    <script type="text/javascript">
-      function getParameter(sParam) {
-          var sPageURL = window.location.search.substring(1);
-          var sURLVariables = sPageURL.split('&');
-          for (var i = 0; i < sURLVariables.length; i++) {
-              var sParameterName = sURLVariables[i].split('=');
-              if (sParameterName[0] == sParam) {
-                  return sParameterName[1];
-              }
-          }
-        }  //proses nangkap id
-      var id=getParameter('id') //get id form url
-
-      $(document).ready(function() {
-        // tampilkan ddata di form
-        $.ajax({
-          url: 'http://127.0.0.1:8000/api/siswa/'+id,
-          crossDomain : true,
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            $('input[name="id"]').val(data.id)
-            $('input[name="nis"]').val(data.nis)
-            $('input[name="nama"]').val(data.nama)
-            $('select[name="jenis_kelamin"]').val(data.jenis_kelamin)
-            $('input[name="tempat_lahir"]').val(data.tempat_lahir)
-            $('input[name="tanggal_lahir"]').val(data.tanggal_lahir)
-            $('input[name="alamat"]').val(data.alamat)
-          }
+  <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    function parseQueryString(queryString) {
+      const result = queryString
+        .split('&')
+        .map(function (item) {
+          return item.split('=')
         })
-      }); //batas document ready
+        .reduce(function (result, item) {
+          return Object.assign({}, result, {
+            [item[0]]: item[1]
+          })
+        }, {})
 
+      return result
+    }
+    // function getParameter(sParam) {
+    //   var sPageURL = window.location.search.substring(1);
+    //   var sURLVariables = sPageURL.split('&');
+    //   for (var i = 0; i < sURLVariables.length; i++) {
+    //     var sParameterName = sURLVariables[i].split('=');
+    //     if (sParameterName[0] == sParam) {
+    //       return sParameterName[1];
+    //     }
+    //   }
+    // }
 
+    const id = parseQueryString(window.location.search.slice(1)).id
 
-    </script>
+    $(document).ready(function () {
+      $.ajax({
+        url: 'http://127.0.0.1:8000/api/siswa/' + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('input[name="id"]').val(data.id)
+          $('input[name="nis"]').val(data.nis)
+          $('input[name="nama"]').val(data.nama)
+          $('select[name="jenis_kelamin"]').val(data.jenis_kelamin)
+          $('input[name="lahir_tempat"]').val(data.lahir_tempat)
+          $('input[name="lahir_tanggal"]').val(data.lahir_tanggal)
+          $('input[name="alamat"]').val(data.alamat)
+        }
+      })
+    })
+
+    $('#form-siswa').on('submit', function (event) {
+      event.preventDefault()
+
+      const formData = $(this).serialize()
+
+      $.ajax({
+        url: 'http://localhost:8000/api/siswa/' + id,
+        method: 'PUT',
+        dataType: 'json',
+        data: formData,
+        success: function (response) {
+          if (response.sukses) {
+            window.alert('Berhasil update siswa')
+            window.location.href = window.location.href
+          } else {
+            window.alert('Gagal update siswa')
+            window.alert('Errors: ' + JSON.stringify(response.errors))
+          }
+        },
+        error: function (error) {
+          window.alert('Terjadi kesalahan saat update siswa')
+        }
+      })
+    })
+  </script>
 </body>
 
 </html>

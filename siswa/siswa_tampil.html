@@ -2,77 +2,85 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>MGMP</title>
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
+  <meta charset="utf-8">
+  <title>MGMP</title>
+  <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            MANAJEMEN DATA SISWA
-        </div>
-        <div class="wrapper">
-            <div class="sidebar">
-                <ul>
-                    <li>
-                        <a href="../siswa/siswa_tampil.html">Siswa</a>
-                    </li>
-                    <li>
-                        <a href="../kelas/kelas_tampil.html">Kelas</a>
-                    </li>
-                    <li>
-                        <a href="../rombel/rombel_tampil.html">Rombel</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="content">
-                <div class="space">
-                    <div class="view-wrapper">
-                        <div class="view-inline">
-                            <p class="title-inline">Data Siswa</p>
-                            <a href="../siswa/siswa_input.html"><button class="submit-inline">Tambah</button></a>
-                        </div>
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>NIS</th>
-                              <th>Nama</th>
-                              <th>Kelas</th>
-                              <th>Alamat</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody id="siswaTampil">
-
-                          </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <p>MGMP @ 2018</p>
-        </div>
-
+  <div class="container">
+    <div class="header">
+      MANAJEMEN DATA SISWA
     </div>
-    <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <div class="wrapper">
+      <div class="sidebar">
+        <ul>
+          <li>
+            <a href="../siswa/siswa_tampil.html">Siswa</a>
+          </li>
+          <li>
+            <a href="../kelas/kelas_tampil.html">Kelas</a>
+          </li>
+          <li>
+            <a href="../rombel/rombel_tampil.html">Rombel</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="space">
+          <div class="view-wrapper">
+            <div class="view-inline">
+              <p class="title-inline">Data Siswa</p>
+              <a href="../siswa/siswa_input.html">
+                <button class="submit-inline">Tambah</button>
+              </a>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>NIS</th>
+                  <th>Nama</th>
+                  <th>L/P</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="siswaTampil">
 
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $.ajax({
-          url: 'http://127.0.0.1:8000/api/siswa',
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            console.log(data);
-            $.each(data,function(index, el) {
-              $('#siswaTampil').append('<tr><td>'+el.nis+'</td><td>'+el.nama+'</td><td>'+el.kelas_id+'</td><td>'+el.alamat+'</td><td><span><a href="../siswa/siswa_edit.html?id='+el.id+'">Edit</a></span> <span><a href="../siswa/siswa_detail.html?id='+el.id+'">Hapus</a></span>  <span><a href="../siswa/siswa_detail.html?id='+el.id+'">Detail</a></span></td> </tr>')
-            });
-          }
-        })
-      });
-    </script>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>MGMP @ 2018</p>
+    </div>
+
+  </div>
+  <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      const url = 'http://127.0.0.1:8000/api/siswa'
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          const rows = data.map(function (item) {
+            return '<tr>' +
+            '<td>' + item.nis + '</td>' +
+            '<td>' + item.nama + '</td>' +
+            '<td>' + (item.jenis_kelamin === 1 ? 'L' : 'P') + '</td>' +
+            '<td><span><a href="../siswa/siswa_edit.html?id=' + item.id + '">Edit</a></span> <span><a href="../siswa/siswa_detail.html?id=' + item.id + '">Hapus</a></span>  <span><a href="../siswa/siswa_detail.html?id=' + item.id + '">Detail</a></span></td>' +
+            '</tr>'
+          })
+
+          $('#siswaTampil').html(rows)
+        }
+      })
+    });
+  </script>
 </body>
 
 </html>

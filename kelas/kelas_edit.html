@@ -2,108 +2,121 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>MGMP</title>
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
+  <meta charset="utf-8">
+  <title>MGMP</title>
+  <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            MANAJEMEN DATA KELAS
-        </div>
-        <div class="wrapper">
-            <div class="sidebar">
-                <ul>
-                    <li>
-                        <a href="../siswa/siswa_tampil.html">Siswa</a>
-                    </li>
-                    <li>
-                        <a href="../kelas/kelas_tampil.html">Kelas</a>
-                    </li>
-                    <li>
-                        <a href="../rombel/rombel_tampil.html">Rombel</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="content">
-                <div class="space">
-                    <div class="form-wrapper">
-                        <div class="form-group">
-                          <form id="form-edit-kelas">
-                            <p class="form-title">Input Kelas</p>
-                            <div class="form-inline">
-                                <label>Nama :</label>
-                                <input type="text" name="nama">
-                            </div>
-                            <button class="submit">Simpan</button>
-                          </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <p>MGMP @ 2018</p>
-        </div>
+  <div class="container">
+    <div class="header">
+      MANAJEMEN DATA KELAS
     </div>
-    <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
-    <script type="text/javascript">
-      function getParameter(sParam) {
-          var sPageURL = window.location.search.substring(1);
-          var sURLVariables = sPageURL.split('&');
-          for (var i = 0; i < sURLVariables.length; i++) {
-              var sParameterName = sURLVariables[i].split('=');
-              if (sParameterName[0] == sParam) {
-                  return sParameterName[1];
-              }
-          }
-        }  //proses nangkap id
-      var id=getParameter('id') //get id form url
-
-      $(document).ready(function() {
-        // tampilkan data di form
-        $.ajax({
-          url: 'http://127.0.0.1:8000/api/kelas/'+id,
-          crossDomain : true,
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            $('input[name="id"]').val(data.id)
-            $('input[name="nama"]').val(data.nama)
-          }
+    <div class="wrapper">
+      <div class="sidebar">
+        <ul>
+          <li>
+            <a href="../siswa/siswa_tampil.html">Siswa</a>
+          </li>
+          <li>
+            <a href="../kelas/kelas_tampil.html">Kelas</a>
+          </li>
+          <li>
+            <a href="../rombel/rombel_tampil.html">Rombel</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="space">
+          <div class="form-wrapper">
+            <div class="form-group">
+              <form id="form-kelas">
+                <p class="form-title">Input Kelas</p>
+                <div class="form-inline">
+                  <label>Nama :</label>
+                  <input type="text" name="nama">
+                </div>
+                <button class="submit">Simpan</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>MGMP @ 2018</p>
+    </div>
+  </div>
+  <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    function parseQueryString (queryString) {
+      const result = queryString
+        .split('&')
+        .map(function (item) {
+          return item.split('=')
         })
-      }); //batas document ready
+        .reduce(function (result, item) {
+          return Object.assign({}, result, {
+            [item[0]]: item[1]
+          })
+        }, {})
 
-      $('#form-edit-kelas').on('submit', function (e) {
+      return result
+    }
 
-        e.preventDefault() // fungsinya supaya tidak ke redirect / reload pas submit form
+    // function getParameter(sParam) {
+    //   var sPageURL = window.location.search.substring(1);
+    //   var sURLVariables = sPageURL.split('&');
+    //   for (var i = 0; i < sURLVariables.length; i++) {
+    //     var sParameterName = sURLVariables[i].split('=');
+    //     if (sParameterName[0] == sParam) {
+    //       return sParameterName[1];
+    //     }
+    //   }
+    // }
 
-        var data = $(this).serialize()
+    const id = parseQueryString(window.location.search.slice(1)).id
 
-        // var data = {
-        //   nama: $('input[name="nama"]').val()
-        // }
-
-        $.ajax({
-          url: 'http://127.0.0.1:8000/api/kelas/' + id,
-          method: 'PUT',
-          data: data,
-          success: function (response) {
-            debugger
-          },
-          error: function (e) {
-            debugger
-          }
-        })
-
+    $(document).ready(function () {
+      // tampilkan data di form
+      const url ='http://127.0.0.1:8000/api/kelas/' + id
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          $('input[name="id"]').val(data.id)
+          $('input[name="nama"]').val(data.nama)
+        }
       })
+    }); //batas document ready
 
+    $('#form-kelas').on('submit', function (event) {
 
+      event.preventDefault() // supaya tidak ke redirect / reload pas submit form
 
+      const formData = $(this).serialize()
 
-
-    </script>
+      $.ajax({
+        url: 'http://127.0.0.1:8000/api/kelas/' + id,
+        method: 'PUT',
+        dataType: 'json',
+        data: formData,
+        success: function (response) {
+          if (response.sukses) {
+            window.alert('Berhasil update kelas')
+            window.location.href = window.location.href
+          } else {
+            window.alert('Gagal update kelas')
+            window.alert('Errors: ' + JSON.stringify(response.errors))
+          }
+        },
+        error: function (error) {
+          window.alert('Terjadi kesalahan saat update kelas')
+        }
+      })
+    })
+  </script>
 </body>
 
 </html>
