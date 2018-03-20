@@ -36,18 +36,18 @@
                 <!-- <input type="hidden" name="id"> -->
                 <div class="form-inline">
                   <label>Tahun Ajar :</label>
-                  <input type="number" name="tahun_ajar">
+                  <input type="number" name="tahun_ajar" readonly disabled>
                 </div>
                 <div class="form-inline">
                   <label>Semester :</label>
-                  <select name="semester">
+                  <select name="semester" readonly disabled>
                     <option value="1">Ganjil</option>
                     <option value="2">Genap</option>
                   </select>
                 </div>
                 <div class="form-inline">
                   <label>Kelas :</label>
-                  <select name="kelas_id">
+                  <select name="kelas_id" readonly disabled>
                   </select>
                 </div>
                 <div class="form-inline">
@@ -147,9 +147,7 @@
         success: function (response) {
           if (response.sukses) {
             window.alert('Berhasil input rombel')
-            // window.location.href = window.location.href
-            // TODO update query string, because we're editing it
-            window.location.href = '/rombel/rombel_tampil.html'
+            window.location.href = window.location.href
           } else {
             window.alert('Gagal input rombel')
             window.alert('Error' + JSON.stringify(response.errors))
