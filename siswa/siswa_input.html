@@ -1,73 +1,104 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <meta charset="utf-8">
     <title>MGMP</title>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div class="header">
-            MANAJEMEN DATA SISWA
+      <div class="header">
+        MANAJEMEN DATA SISWA
+      </div>
+      <div class="wrapper">
+        <div class="sidebar">
+          <ul>
+            <li>
+            <a href="../siswa/siswa_tampil.html">Siswa</a>
+            </li>
+            <li>
+            <a href="../kelas/kelas_tampil.html">Kelas</a>
+            </li>
+            <li>
+            <a href="../rombel/rombel_tampil.html">Rombel</a>
+            </li>
+          </ul>
         </div>
-        <div class="wrapper">
-            <div class="sidebar">
-                <ul>
-                    <li>
-                        <a href="../siswa/siswa_tampil.html">Siswa</a>
-                    </li>
-                    <li>
-                        <a href="../kelas/kelas_tampil.html">Kelas</a>
-                    </li>
-                    <li>
-                        <a href="../rombel/rombel_tampil.html">Rombel</a>
-                    </li>
-                </ul>
+        <div class="content">
+          <div class="space">
+            <div class="form-wrapper">
+              <div class="form-group">
+                <form id="form-siswa">
+                  <p class="form-title">Input Siswa</p>
+                  <div class="form-inline">
+                    <label>NIS :</label>
+                    <input type="text" name="nis">
+                  </div>
+                  <div class="form-inline">
+                    <label>Nama :</label>
+                    <input type="text" name="nama">
+                  </div>
+                  <div class="form-inline">
+                    <label>Jenis Kelamin :</label>
+                    <select name="jenis_kelamin">
+                      <option value="1">Laki-laki</option>
+                      <option value="0">Perempuan</option>
+                    </select>
+                  </div>
+                  <div class="form-inline">
+                    <label>Tempat Lahir :</label>
+                    <input type="text" name="lahir_tempat">
+                  </div>
+                  <div class="form-inline">
+                    <label>Tanggal Lahir :</label>
+                    <input type="date" name="lahir_tanggal">
+                  </div>
+                  <div class="form-inline">
+                    <label>Alamat :</label>
+                    <input type="text" name="alamat">
+                  </div>
+                  <button class="submit">Simpan</button>
+                </form>
+              </div>
             </div>
-            <div class="content">
-                <div class="space">
-                    <div class="form-wrapper">
-                      <div class="form-group">
-                          <p class="form-title">Input Siswa</p>
-                          <div class="form-inline">
-                              <label>NIS :</label>
-                              <input type="text" name="nis">
-                          </div>
-                          <div class="form-inline">
-                              <label>Nama :</label>
-                              <input type="text" name="nama">
-                          </div>
-                          <div class="form-inline">
-                              <label>Jenis Kelamin :</label>
-                              <select name="jenis_kelamin">
-                                  <option value="1">Laki-laki</option>
-                                  <option value="2">Perempuan</option>
-                              </select>
-                          </div>
-                          <div class="form-inline">
-                              <label>Tempat Lahir :</label>
-                              <input type="text" name="lahir_tempat">
-                          </div>
-                          <div class="form-inline">
-                              <label>Tanggal Lahir :</label>
-                              <input type="date" name="lahir_tanggal">
-                          </div>
-                          <div class="form-inline">
-                              <label>Alamat :</label>
-                              <input type="text" name="alamat">
-                          </div>
-                          <button class="submit">Simpan</button>
-                      </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-        <div class="footer">
-            <p>MGMP @ 2018</p>
-        </div>
+      </div>
+      <div class="footer">
+        <p>MGMP @ 2018</p>
+      </div>
     </div>
-</body>
+    <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script>
+    $(document).ready(function () {
+      $('#form-siswa').on('submit', function (event) {
+        event.preventDefault()
+
+        const formData = $(this).serialize()
+
+        $.ajax({
+          url: 'http://localhost:8000/api/siswa',
+          method: 'POST',
+          dataType: 'json',
+          data: formData,
+          success: function (response) {
+            if (response.sukses) {
+              window.alert('Berhasil input siswa')
+              window.location.href = window.location.href
+            } else {
+              window.alert('Gagal input siswa')
+              window.alert('Errors: ' + JSON.stringify(response.errors))
+            }
+          },
+          error: function (error) {
+            window.alert('Terjadi kesalahan saat input siswa')
+          }
+        })
+      })
+    })
+    </script>
+  </body>
 
 </html>
