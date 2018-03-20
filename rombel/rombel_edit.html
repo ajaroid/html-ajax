@@ -147,7 +147,9 @@
         success: function (response) {
           if (response.sukses) {
             window.alert('Berhasil input rombel')
-            window.location.href = window.location.href
+            // window.location.href = window.location.href
+            // TODO update query string, because we're editing it
+            window.location.href = '/rombel/rombel_tampil.html'
           } else {
             window.alert('Gagal input rombel')
             window.alert('Error' + JSON.stringify(response.errors))
