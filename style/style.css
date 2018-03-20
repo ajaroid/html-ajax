@@ -1,4 +1,5 @@
 body {
+    font-family: sans-serif;
     margin: auto;
 }
 
@@ -20,14 +21,18 @@ body {
 .wrapper {
     width: 100%;
     background-color: #fff;
-    min-height: 400px;
+    height: calc(100vh - 80px);
 }
 .sidebar {
     width: 30%;
-    min-height: 400px;
+    /* min-height: 400px; */
+    height: calc(100vh - 80px);
     float: left;
     background-color: #ecf0f1;
     display: block;
+}
+.sidebar ul {
+    list-style: none;
 }
 .sidebar ul li {
     line-height: 30px;
