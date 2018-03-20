@@ -110,7 +110,6 @@
         method: 'POST',
         data: data,
         success: function (response) {
-          debugger
           if (response.sukses) {
             window.alert('Berhasil input rombel')
             window.location.href = window.location.href
@@ -120,7 +119,6 @@
           }
         },
         error: function (e) {
-          debugger
           window.alert('Terjadi kesalahan saat input rombel')
         }
       })
