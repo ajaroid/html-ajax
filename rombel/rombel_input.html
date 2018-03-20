@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>MGMP</title>
   <link rel="stylesheet" type="text/css" href="../style/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -65,9 +66,11 @@
     </div>
   </div>
   <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function () {
+
       // Panggil Select Kelas
       $.ajax({
         url: 'http://127.0.0.1:8000/api/kelas',
@@ -90,7 +93,7 @@
           const options = data.map(function (item) {
             return '<option value="' + item.id + '">' + item.nis + ' - ' + item.nama + '</option>'
           })
-          $('select[name="siswa_ids"]').html(options)
+          $('select[name="siswa_ids"]').html(options).select2({ width: '100%' })
         }
       })
     })

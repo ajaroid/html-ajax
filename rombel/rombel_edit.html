@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>MGMP</title>
   <link rel="stylesheet" type="text/css" href="../style/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -66,6 +67,7 @@
     </div>
   </div>
   <script src="../jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
   <script type="text/javascript">
     function parseQueryString(queryString) {
@@ -124,7 +126,7 @@
           $('input[name="tahun_ajar"]').val(data.tahun_ajar)
           $('select[name="semester"]').val(data.semester)
           $('select[name="kelas_id"]').val(data.kelas.id)
-          $('select[name="siswa_ids"]').val(data.siswa_ids)
+          $('select[name="siswa_ids"]').val(data.siswa_ids).select2({ width: '100%' })
         }
       })
     })
