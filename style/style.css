@@ -41,6 +41,9 @@ body {
 .content .space {
     padding: 20px;
 }
+.clear {
+    clear: both;
+}
 .footer {
     line-height: 30px;
     background-color: #000000;
