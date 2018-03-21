@@ -36,18 +36,18 @@
                 <!-- <input type="hidden" name="id"> -->
                 <div class="form-inline">
                   <label>Tahun Ajar :</label>
-                  <input type="number" name="tahun_ajar" readonly disabled>
+                  <input type="number" name="tahun_ajar" disabled>
                 </div>
                 <div class="form-inline">
                   <label>Semester :</label>
-                  <select name="semester" readonly disabled>
+                  <select name="semester" disabled>
                     <option value="1">Ganjil</option>
                     <option value="2">Genap</option>
                   </select>
                 </div>
                 <div class="form-inline">
                   <label>Kelas :</label>
-                  <select name="kelas_id" readonly disabled>
+                  <select name="kelas_id" disabled>
                   </select>
                 </div>
                 <div class="form-inline">
@@ -111,7 +111,7 @@
         dataType: 'json',
         success: function (data) {
           const options = data.map(function (item) {
-            return '<option value="' + item.id + '">' + item.nis + ' - ' + item.nama + '</option>'
+            return '<option value="' + item.id + '">' + item.nama + ' - NIS ' + item.nis + '</option>'
           })
           $('select[name="siswa_ids"]').html(options)
         }
@@ -119,7 +119,6 @@
       // tampilkan data di form
       $.ajax({
         url: 'http://127.0.0.1:8000/api/rombel/' + tahunAjar + '/' + kelasId + '/' + semester,
-        crossDomain: true,
         type: 'GET',
         dataType: 'json',
         success: function (data) {
