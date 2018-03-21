@@ -38,13 +38,6 @@
                   <input type="number" name="tahun_ajar">
                 </div>
                 <div class="form-inline">
-                  <label>Semester :</label>
-                  <select name="semester">
-                    <option value="1">Ganjil</option>
-                    <option value="2">Genap</option>
-                  </select>
-                </div>
-                <div class="form-inline">
                   <label>Kelas :</label>
                   <select name="kelas_id">
                   </select>
@@ -103,7 +96,6 @@
       e.preventDefault() // fungsinya supaya tidak ke redirect / reload pas submit form
       const data = {
         tahun_ajar: $('input[name="tahun_ajar"]').val(),
-        semester: $('select[name="semester"]').val(),
         kelas_id: $('select[name="kelas_id"]').val(),
         siswa_ids: $('select[name="siswa_ids"]').val()
       }

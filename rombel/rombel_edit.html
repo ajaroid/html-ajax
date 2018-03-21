@@ -39,13 +39,6 @@
                   <input type="number" name="tahun_ajar" disabled>
                 </div>
                 <div class="form-inline">
-                  <label>Semester :</label>
-                  <select name="semester" disabled>
-                    <option value="1">Ganjil</option>
-                    <option value="2">Genap</option>
-                  </select>
-                </div>
-                <div class="form-inline">
                   <label>Kelas :</label>
                   <select name="kelas_id" disabled>
                   </select>
@@ -88,7 +81,6 @@
     const queryString = parseQueryString(window.location.search.slice(1))
     const tahunAjar = queryString.tahun_ajar
     const kelasId = queryString.kelas_id
-    const semester = queryString.semester
 
     $(document).ready(function () {
       // Panggil Select Kelas
@@ -118,12 +110,11 @@
       })
       // tampilkan data di form
       $.ajax({
-        url: 'http://127.0.0.1:8000/api/rombel/' + tahunAjar + '/' + kelasId + '/' + semester,
+        url: 'http://127.0.0.1:8000/api/rombel/' + tahunAjar + '/' + kelasId,
         type: 'GET',
         dataType: 'json',
         success: function (data) {
           $('input[name="tahun_ajar"]').val(data.tahun_ajar)
-          $('select[name="semester"]').val(data.semester)
           $('select[name="kelas_id"]').val(data.kelas.id)
           $('select[name="siswa_ids"]').val(data.siswa_ids).select2({ width: '100%' })
         }
@@ -134,13 +125,12 @@
       e.preventDefault() // fungsinya supaya tidak ke redirect / reload pas submit form
       const data = {
         tahun_ajar: $('input[name="tahun_ajar"]').val(),
-        semester: $('select[name="semester"]').val(),
         kelas_id: $('select[name="kelas_id"]').val(),
         siswa_ids: $('select[name="siswa_ids"]').val()
       }
 
       $.ajax({
-        url: 'http://127.0.0.1:8000/api/rombel/' + tahunAjar + '/' + kelasId + '/' + semester,
+        url: 'http://127.0.0.1:8000/api/rombel/' + tahunAjar + '/' + kelasId,
         method: 'PUT',
         data: data,
         success: function (response) {

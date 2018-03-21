@@ -36,10 +36,6 @@
                 <td id='tahun_ajar'></td>
               </tr>
               <tr>
-                <td class="title">Semester</td>
-                <td id="semester"></td>
-              </tr>
-              <tr>
                 <td class="title">Kelas</td>
                 <td id="kelas"></td>
               </tr>
@@ -88,16 +84,14 @@
     const queryString = parseQueryString(window.location.search.slice(1))
     const tahunAjar = queryString.tahun_ajar
     const kelasId = queryString.kelas_id
-    const semester = queryString.semester
 
     $(document).ready(function () {
       $.ajax({
-        url: 'http://127.0.0.1:8000/api/rombel/' + tahunAjar + '/' + kelasId + '/' + semester,
+        url: 'http://127.0.0.1:8000/api/rombel/' + tahunAjar + '/' + kelasId,
         type: 'GET',
         dataType: 'json',
         success: function (data) {
           $('#tahun_ajar').html(data.tahun_ajar)
-          $('#semester').html(data.semester % 2 === 0 ? 'Genap' : 'Ganjil')
           $('#kelas').html(data.kelas.nama)
 
           const siswaMembers = data.siswa_members.map(function (item) {
