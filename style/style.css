@@ -25,7 +25,6 @@ body {
 }
 .sidebar {
     width: 30%;
-    /* min-height: 400px; */
     min-height: calc(100vh - 100px);
     float: left;
     background-color: #ecf0f1;
